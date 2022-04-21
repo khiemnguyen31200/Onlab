@@ -1,2 +1,9 @@
-package vn.techmaster.jobhunt.controller;public class EmployerController {
+package vn.techmaster.jobhunt.controller;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+
+public class EmployerController {
+
 }

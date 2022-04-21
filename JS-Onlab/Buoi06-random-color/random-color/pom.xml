@@ -42,7 +42,11 @@
             <artifactId>lombok</artifactId>
             <groupId>org.projectlombok</groupId>
         </dependency>
-    </dependencies>
+		<dependency>
+			<artifactId>lombok</artifactId>
+			<groupId>org.projectlombok</groupId>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>
