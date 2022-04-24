@@ -3,8 +3,8 @@
 // Xóa công việc
 // Lọc công việc theo trạng thái
 
-const API_URL = "http://localhost:8080/api/v1"
-let todos = [];
+const API_URL = "/api/v1"
+
 
 let isUpdate = false;
 let idUpdate = null;
@@ -106,7 +106,6 @@ btnAdd.addEventListener("click", async function () {
     try {
         // Lấy title
         let title = inputTodoEl.value;
-
         // Kiểm tra tiêu đề có trống hay không
         if (title == "") {
             alert("Tiều đề không được để trống")
@@ -231,5 +230,3 @@ function updateTitle(id) {
     idUpdate = id;
     isUpdate = true;
 }
-
-getTodos();

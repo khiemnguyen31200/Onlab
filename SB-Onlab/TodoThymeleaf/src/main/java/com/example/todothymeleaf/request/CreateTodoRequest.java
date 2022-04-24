@@ -1,4 +1,4 @@
-package vn.techmaster.todolist.request;
+package com.example.todothymeleaf.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

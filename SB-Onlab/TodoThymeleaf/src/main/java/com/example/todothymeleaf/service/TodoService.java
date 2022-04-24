@@ -1,11 +1,11 @@
-package vn.techmaster.todolist.service;
+package com.example.todothymeleaf.service;
 
 
 import org.springframework.stereotype.Service;
 
-import vn.techmaster.todolist.model.Todo;
-import vn.techmaster.todolist.request.CreateTodoRequest;
-import vn.techmaster.todolist.request.UpdateTodoRequest;
+import com.example.todothymeleaf.model.Todo;
+import com.example.todothymeleaf.request.CreateTodoRequest;
+import com.example.todothymeleaf.request.UpdateTodoRequest;
 
 import java.util.ArrayList;
 import java.util.List;

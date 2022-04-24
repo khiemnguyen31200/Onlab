@@ -1,13 +1,14 @@
-package vn.techmaster.todolist.controller;
+package com.example.todothymeleaf.controller;
 
+import com.example.todothymeleaf.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vn.techmaster.todolist.model.Todo;
-import vn.techmaster.todolist.request.CreateTodoRequest;
-import vn.techmaster.todolist.request.UpdateTodoRequest;
-import vn.techmaster.todolist.service.TodoService;
+import com.example.todothymeleaf.model.Todo;
+import com.example.todothymeleaf.request.CreateTodoRequest;
+import com.example.todothymeleaf.request.UpdateTodoRequest;
+import com.example.todothymeleaf.service.TodoService;
 
 import java.util.List;
 

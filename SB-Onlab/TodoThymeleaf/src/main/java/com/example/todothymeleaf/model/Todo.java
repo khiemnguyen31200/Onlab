@@ -1,4 +1,4 @@
-package vn.techmaster.todolist.model;
+package com.example.todothymeleaf.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,4 +12,6 @@ public class Todo {
     private int id;
     private String title;
     private boolean status;
+
+
 }
