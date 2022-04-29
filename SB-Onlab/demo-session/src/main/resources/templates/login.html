@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form method="post" action="#" th:action="login" th:object="${loginrequest}">
+        Email : <input type="text" th:field="*{email}"><br></br>
+        <h4 th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: red;"></h4>
+        Password : <input type="password" th:field="*{password}"><br></br>
+        <h4 th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: red;" ></h4><br></br>
+        <button type="submit">Đăng nhập</button>   
+    </form>
+    
+</body>
+</html>

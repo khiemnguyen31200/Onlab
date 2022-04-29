@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Home Page</h1>
+
+    <th:block th:if="${users != null}">
+        <p th:text="'Chào bạn ' + ${users.fullName}"></p>
+        <a href="/admin">Trang admin</a><br><br>
+        <a href="/logout">Logout</a><br><br>
+    </th:block>
+
+    <th:block th:if="${users == null}">
+
+        <a href="/register">Đăng Kí</a><br><br>
+    <a href="/login">Login</a><br><br>
+    </th:block>
+</body>
+</html>
