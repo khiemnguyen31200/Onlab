@@ -2,20 +2,26 @@ package vn.techmaster.user.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import vn.techmaster.user.dto.UserDto;
+import vn.techmaster.user.request.UpdatePasswordRequest;
 import vn.techmaster.user.request.UserRequest;
 import vn.techmaster.user.request.UserRequestUpdate;
+import vn.techmaster.user.service.FileService;
 import vn.techmaster.user.service.UserService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("")
 public class UserController {
     @Autowired
     UserService userService;
+    @Autowired
+    FileService fileService;
     @GetMapping("/users")
     public ResponseEntity<?>getUsers(){
         List<UserDto> userDtos = userService.getUsers();
@@ -52,6 +58,29 @@ public class UserController {
         return ResponseEntity.ok(userDto);
     }
 
+    @PutMapping("/user-change-password/{id}")
+    public ResponseEntity<?> changePassword(@PathVariable int id , @RequestBody UpdatePasswordRequest request){
+        userService.updatePassword(id,request);
+        return ResponseEntity.ok(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("/users/forgot/{id}")
+    public ResponseEntity<?> forgotPassword(@PathVariable int id){
+        String pass = userService.forgotPassword(id);
+        return ResponseEntity.ok(pass);
+    }
+
+
+    @PostMapping("/users/upload-file/{id}")
+    public ResponseEntity<?> Uploadfile(@PathVariable int id, @ModelAttribute("file") MultipartFile file) {
+        String path = fileService.uploadfile(id, file);
+        return ResponseEntity.ok(path);
+    }
+    @GetMapping ("users/files/{id}/{fileName}")
+    public ResponseEntity<?> readFile (@PathVariable int id , @PathVariable String fileName) {
+        byte[] bytes = fileService.readFile(id , fileName) ;
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(bytes);
+    }
 
 
 }
