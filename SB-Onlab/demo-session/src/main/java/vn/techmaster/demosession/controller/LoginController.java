@@ -8,15 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import vn.techmaster.demosession.dto.UserDTO;
 import vn.techmaster.demosession.exception.UserException;
 import vn.techmaster.demosession.model.User;
+import vn.techmaster.demosession.repository.UserRepository;
 import vn.techmaster.demosession.request.LoginRequest;
+import vn.techmaster.demosession.request.RegisterRequest;
 import vn.techmaster.demosession.service.UserService;
 
 @Controller
@@ -24,6 +23,8 @@ import vn.techmaster.demosession.service.UserService;
 public class LoginController {
     @Autowired
     UserService userService;
+    @Autowired
+    UserRepository userRepository;
 
     @GetMapping()
     public String HomePage(Model model, HttpSession session) {
@@ -86,8 +87,24 @@ public class LoginController {
     }
 
     @GetMapping("/register")
-    public String HomeRegister() {
+    public String HomeRegister(Model model) {
+    model.addAttribute("register",new RegisterRequest("","",""));
         return "register";
+    }
+    @PostMapping("/register")
+    public String Register(@Valid @ModelAttribute("register") RegisterRequest registerRequest, BindingResult result){
+        if (result.hasErrors()) {
+            return "register";
+        }
+        userService.addUser(registerRequest.name(),registerRequest.email(),registerRequest.password());
+
+         return "index";
+    }
+
+    @GetMapping("/validate/{register-code}")
+    public String validateUser(@PathVariable("register-code")String code ){
+        userRepository.checkValidate(code);
+        return "index";
     }
 
 

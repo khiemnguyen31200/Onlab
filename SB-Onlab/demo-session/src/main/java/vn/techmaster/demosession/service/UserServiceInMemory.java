@@ -17,7 +17,8 @@ import vn.techmaster.demosession.security.Hashing;
 public class UserServiceInMemory implements UserService {
     @Autowired private UserRepository userRepo;
     @Autowired private Hashing hashing;
-    private ConcurrentHashMap<String, String> active_code_user_id = new ConcurrentHashMap<>();
+
+
 
     
 
@@ -42,7 +43,6 @@ public class UserServiceInMemory implements UserService {
 
     @Override
     public Boolean logout(String email) {
-
         return null;
     }
 

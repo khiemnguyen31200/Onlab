@@ -66,8 +66,8 @@ public class UserController {
 
     @PostMapping("/users/forgot/{id}")
     public ResponseEntity<?> forgotPassword(@PathVariable int id){
-        String pass = userService.forgotPassword(id);
-        return ResponseEntity.ok(pass);
+        userService.forgotPassword(id);
+        return ResponseEntity.ok(HttpStatus.NO_CONTENT);
     }
 
 
@@ -82,5 +82,9 @@ public class UserController {
         return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(bytes);
     }
 
-
+    @GetMapping ("users/files/{id}")
+    public ResponseEntity<?> readFile (@PathVariable int id , @RequestParam int page)  {
+        List<String> files = fileService.getFiles(id,page);
+        return ResponseEntity.ok(files);
+    }
 }

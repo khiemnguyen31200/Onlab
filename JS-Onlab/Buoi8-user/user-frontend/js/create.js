@@ -38,7 +38,7 @@ btnSave.addEventListener("click", async function () {
         let res = await axios.post(API_URL, {
             name: nameEl.value,
             email: emailEl.value,
-            phone: emailEl.value,
+            phone: phoneEl.value,
             address: addressEl.value,
             password: passwordEl.value
         })
