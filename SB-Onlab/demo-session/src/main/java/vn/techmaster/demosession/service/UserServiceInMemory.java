@@ -19,9 +19,6 @@ public class UserServiceInMemory implements UserService {
     @Autowired private Hashing hashing;
 
 
-
-    
-
     @Override
     public User login(String email, String password) {
         Optional<User> o_user = userRepo.findByEmail(email);

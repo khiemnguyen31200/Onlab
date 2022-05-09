@@ -10,6 +10,7 @@ import vn.techmaster.user.dto.UserDto;
 import vn.techmaster.user.request.UpdatePasswordRequest;
 import vn.techmaster.user.request.UserRequest;
 import vn.techmaster.user.request.UserRequestUpdate;
+import vn.techmaster.user.response.FileReturn;
 import vn.techmaster.user.service.FileService;
 import vn.techmaster.user.service.UserService;
 
@@ -84,7 +85,7 @@ public class UserController {
 
     @GetMapping ("users/files/{id}")
     public ResponseEntity<?> readFile (@PathVariable int id , @RequestParam int page)  {
-        List<String> files = fileService.getFiles(id,page);
+        FileReturn files = fileService.getFiles(id,page);
         return ResponseEntity.ok(files);
     }
 }

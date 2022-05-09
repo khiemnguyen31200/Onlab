@@ -88,17 +88,26 @@ public class LoginController {
 
     @GetMapping("/register")
     public String HomeRegister(Model model) {
-    model.addAttribute("register",new RegisterRequest("","",""));
+    model.addAttribute("register",new RegisterRequest("","","",""));
         return "register";
     }
     @PostMapping("/register")
     public String Register(@Valid @ModelAttribute("register") RegisterRequest registerRequest, BindingResult result){
+        if(!registerRequest.password().equals(registerRequest.retypePassword())){
+            result.addError(new FieldError("register", "retypePassword", "Mật khẩu không trùng nhau"));
+            return "register";
+        }
         if (result.hasErrors()) {
             return "register";
         }
-        userService.addUser(registerRequest.name(),registerRequest.email(),registerRequest.password());
-
-         return "index";
+        User user;
+        try {
+            userService.addUser(registerRequest.name(),registerRequest.email(),registerRequest.password());
+        }catch (UserException e){
+            result.addError(new FieldError("register", "email", e.getMessage()));
+            return "register";
+        }
+        return "redirect:/";
     }
 
     @GetMapping("/validate/{register-code}")

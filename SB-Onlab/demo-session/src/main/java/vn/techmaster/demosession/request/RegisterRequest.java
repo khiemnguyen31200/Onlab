@@ -11,7 +11,9 @@ public record RegisterRequest(
                               @Email(message = "Định dạng không đúng")
                               String email,
                               @Size(min = 5, max = 20, message = "Vui lòng nhập từ  5 đến 20 kí tự")
-                              String password
+                              String password,
+                              @Size(min = 5, max = 20, message = "Vui lòng nhập từ  5 đến 20 kí tự")
+                              String retypePassword
                              )
 {
 

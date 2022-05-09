@@ -1,4 +1,4 @@
-package vn.techmaster.user.service;
+package vn.techmaster.user.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

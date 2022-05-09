@@ -1,9 +1,5 @@
 package vn.techmaster.user.service;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -13,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import vn.techmaster.user.exception.BadRequestException;
 import vn.techmaster.user.exception.NotFoundException;
 import vn.techmaster.user.model.User;
+import vn.techmaster.user.response.FileReturn;
 
 
 import java.io.*;
@@ -137,17 +134,12 @@ public class FileService {
         List<File> files = Arrays.asList(userPath.toFile().listFiles());
 
         //Công thức tính page
-        List<File> filesReturn = files.subList((page -1)*numberImageofPage,(page*numberImageofPage)-1);
-        int totalPage = (int)Math.ceil(files.size()/numberImageofPage);
+        //List<File> filesReturn = files.subList((page -1)*numberImageofPage,(page*numberImageofPage)-1);
+        List<File> filesReturn =files.stream().skip((page -1)*numberImageofPage).limit(numberImageofPage).collect(Collectors.toList());
+        int totalPage = (int)Math.ceil((double) files.size()/numberImageofPage);
 
-      List<String> filesPath = filesReturn.stream().map(file -> file.getName()).collect(Collectors.toList());
+      List<String> filesPath = filesReturn.stream().map(file -> "/files/"+id+"/"+file.getName()).toList();
        return new FileReturn(filesPath,totalPage);
     }
 }
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-class FileReturn{
-    private List<String> files;
-    private int totalPage;
-}
+

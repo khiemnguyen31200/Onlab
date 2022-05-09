@@ -20,7 +20,5 @@ public class EmailService {
 
         // Send Message!
         sender.send(message);
-
-
     }
 }

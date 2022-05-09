@@ -8,6 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import vn.techmaster.demosession.exception.UserException;
 import vn.techmaster.demosession.model.State;
 import vn.techmaster.demosession.model.User;
 import vn.techmaster.demosession.service.EmailService;
@@ -24,13 +25,22 @@ public class UserRepository {
 
 
     public User addUser(String fullName, String email, String haskPassword, State state) {
+        if(isEmailExist(email)){
+            throw new UserException("Email đã được sử dụng");
+        }
         String id = UUID.randomUUID().toString();
         User user = User.builder().id(id).fullName(fullName).email(email).haskPassWord(haskPassword).state(state)
                 .build();
         if(state.equals(State.PENDING)){
             String regisCode = UUID.randomUUID().toString();
             active_code_user_id.put(regisCode,id);
-            emailService.sendEmail(email,regisCode);
+            try{
+                emailService.sendEmail(email,regisCode);
+            }catch (Exception e){
+                active_code_user_id.remove(regisCode);
+                users.remove(id);
+                throw new UserException("Địa chỉ email của bạn không tồn tại");
+            }
         }
         users.put(id, user);
         return user;
