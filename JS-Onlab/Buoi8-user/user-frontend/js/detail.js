@@ -16,6 +16,7 @@ const errorText = document.getElementById("error")
 const btnForgot = document.getElementById("btn-forgot-password")
 const avatarEl = document.getElementById("avatar")
 const avatarPreview = document.getElementById("avatar-preview")
+const selectAvartar = document.querySelectorAll(".grid-container > div")
 
 const myModal = new bootstrap.Modal(document.getElementById('modal-change-password'), {
     keyboard: false

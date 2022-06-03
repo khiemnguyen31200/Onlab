@@ -47,7 +47,6 @@ public class LoginController {
         if (result.hasErrors()) {
             return "login";
         }
-
         User user;
         try {
             user = userService.login(loginrequest.email(), loginrequest.password());
@@ -60,12 +59,10 @@ public class LoginController {
                 case "Người dùng chưa được kích hoạt":
                     result.addError(new FieldError("loginrequest", "password", "Người dùng chưa được kích hoạt"));
                     break;
-
                 case "Mật khẩu hoặc tên đăng nhập của bạn đã sai":
                     result.addError(
                             new FieldError("loginrequest", "password", "Mật khẩu hoặc tên đăng nhập của bạn đã sai"));
                     break;
-
             }
             return "login";
         }
