@@ -3,7 +3,7 @@
 ## 2. Để debug câu lệnh SQL mà Hibernate sẽ sinh ra trong quá trình thực thi, cần phải bổ sung lệnh nào vào file application.properties câu lệnh như sau:
 
 ```sql 
-logging.level.org.hibernate.SQL=DEBUG
+spring.jpa.properties.hibernate.format_sql=true
 ```
 
 ## 3.Ta truy cập vào h2-console
