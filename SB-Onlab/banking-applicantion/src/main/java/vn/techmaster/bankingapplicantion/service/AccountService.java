@@ -38,7 +38,7 @@ public class AccountService {
             throw new TransferException("Not enough balance");
         }
 
-        return accA.get().getUser().getName() +" da chuyen khoan den " +accB.get().getUser().getName() + " " + amount;
+        return accA.get().getUser().getName() +" transfered to " +accB.get().getUser().getName() + " " + amount;
     }
 
     public String Withdraw ( String idA ,Long amount){
