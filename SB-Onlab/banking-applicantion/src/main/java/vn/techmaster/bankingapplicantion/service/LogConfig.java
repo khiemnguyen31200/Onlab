@@ -1,0 +1,36 @@
+package vn.techmaster.bankingapplicantion.config;
+
+
+import org.apache.commons.logging.Log;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+
+public class LogConfig {
+
+    private static final Logger Log =  LogManager.getLogger(Log.class);
+
+    //Info Level Logs
+    public static void info (String message) {
+        Log.info(message);
+    }
+    public static void info (Object object) {
+        Log.info(object);
+    }
+    //Warn Level Logs
+    public static void warn (String message) {
+        Log.warn(message);
+    }
+    public static void warn (Object object) {
+        Log.warn(object);
+    }
+    //Error Level Logs
+    public static void error (String message) {
+        Log.error(message);
+    }
+    public static void error (Object object) {
+        Log.error(object);
+    }
+
+
+}
